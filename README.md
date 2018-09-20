@@ -11,6 +11,7 @@ see [meetings logbook here](https://docs.google.com/document/d/1JDCiqSBxQkQRHWb6
 
 see [Report here](https://docs.google.com/document/d/1kqb2wzgOyMva34J6NQ1DzZinxCdykRRoUhzdmoXQflo/edit?usp=sharing)
 
+run python3 sampleRequests.py for auto-creating fake events
 # Things to notice:
 * Work on your separate branch! Use class name for branch name
 * Use @property for getter/@xxx.setter for setter for private attributes of class
