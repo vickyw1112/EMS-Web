@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>EMS - Post Course</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+    <script src="/static/js/vue.min.js" charset="utf-8"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<h1 class="text-center heading">Post a new course</h1>
+
+{% if msg %}
+<div class="alert alert-{{msg.cls}}" role="alert">
+{{msg}}
+</div>
+{% endif %}
+
+<div id="app">
+    
+<form id="postForm" action="{{url_for('postEvent', eventType='course')}}" method="post">
+    <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" type="text" name="title" placeholder="Enter Event Title" /> <br />
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Start time</label>
+                <input class="form-control" type="datetime-local" name="timeStart" /> 
+            </div>
+            <div class="col-md-6">
+                <label>End time</label>
+                <input class="form-control" type="datetime-local" name="timeEnd" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Registration fee</label>
+                <input class="form-control" type="number" name="fee" placeholder="Enter Fee" />
+                <small class="form-text text-muted">This registration fee is only payable by guest users.</small>
+            </div>
+            <div class="col-md-6">
+                <label>Capacity</label>
+                <input class="form-control" type="number" name="capacity" placeholder="Enter Course Capacity" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Early bird time</label>
+                <input class="form-control" type="datetime-local" name="earlyBirdTime"  />
+                <small class="form-text text-muted">Registration before this time will have a 50% off for guest users.</small>
+
+            </div>
+            <div class="col-md-6">
+                <label>Last time to leave</label>
+                <input class="form-control" type="datetime-local" name="lastTimeToLeave" id="time" value="" /> 
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" style="height:125px" name="description" placeholder="Enter description..."></textarea> <br />
+    </div>
+
+    <input class="btn btn-primary" type="submit" name="post" value="Post" />
+</form>
+
+</div>
+{% endblock %}
+
+
+{% block script %}
+{% include 'form_persist.js' %}
+{% endblock %}

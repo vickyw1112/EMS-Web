@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block head %}
+<title>EMS - {{event.title}}</title>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center heading">{{event.title}}</h1>
+
+{% if msg %}
+<div class="alert alert-{{msg.cls}}" role="alert">
+{{msg}}
+</div>
+{% endif %}
+
+{% include event.type.lower() + '_details.html' %}
+
+
+{% endblock %}

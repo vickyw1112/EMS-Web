@@ -1,0 +1,67 @@
+6:00 PM Wed Apr. 11, 2018 at K17 tabla lab
+We did requirement analysis together and have our first version of user stories ready.
+We'll probably fix some issues in the user stories and prepare some draft CRC cards for next meeting to finalise a class diagram
+Obstacles include not having idea about what to write in most of the goal field of RGB user story.
+
+1:00 PM Sat Apr. 14, 2018 at Main Libray
+We formalised user stories, added Acceptance Criteria and Priority for each user story. Still figuring out what should we put after 'so that'.
+We also write detailed class specifications including each class's properties and methods from our draft CRC cards.
+We decide to do a digital class diagram from these hand-wrriten specifications on Wednesday's lab session and also to seek further clarifications about user stories from tutors.
+
+6:00 PM Wed Apr. 18, 2018 at K17 tabla lab
+We got our feedback about user stories and class diagram from our tutor, and finalised everything on class diagram.
+We prepare to do first iteration of our project within next week which include the first two user stories with priority 1.
+We will have a meeting next week to merge our code and do the testing together to finish iteration 1.
+We will settle who to do what later and added below 
+
+class/methods to be implemented for iteration1:
+
+Vicky:
+    EMS:
+    EMS.loadUsers
+    EMS.addUser
+    EMS.login
+    EMS.getUserById
+    EMS.getOpenEventsByCategory
+    EMS.getEventById
+
+    User:
+    property getters
+    User.__init__
+    User.get_id
+
+==============================
+
+Tim:
+    Event:
+    property getters
+    Event.__init__
+
+    Course:
+    None (All things inherit from Event)
+
+    Seminar:
+    property getters
+
+    Session:
+    property getters
+
+==============================
+
+Chester:
+    Time:
+    property getters
+    Time.__str__
+
+    Front End Page:
+    login
+    list event by category
+
+    route.py:
+    logic to call interface and pass data into render_template
+
+1:00 PM Thu Apr. 26th at J17 labs
+We worked on some obstables that we've encountered in our own separate works together and then merged all of our codes back to master branch.
+Fixed quite a lot small bugs and got first iteration running.
+There're still some unit tests to be written, but overall, functionality for iteration 1 user stories is all good.
+We'll do some maintenance jobs and then decide some details about next iteration.

@@ -1,0 +1,210 @@
+Total story pts: 21
+Each iteration: 6-8
+
+=======================
+(Done)
+US1:
+As a user,
+I should be able to log in to the system,
+So that I can start to use the system.
+
+Estimate Story Pts: 2
+Priority: 1
+
+ACs:
+1. The user can get authenticated by correct email/password combination
+2. The system redirects the user to the home page after successful login attempt
+3. The system asks the user to try again in case the user provides with wrong combination
+
+=======================
+(Done)
+US2:
+As a user,
+I should be able to see a list of events by category,
+So that I can decide which one to attend.
+
+Estimate Story Pts: 4
+Priority: 1
+
+
+ACs:
+1. The system should list all the 'open' events with their summary by category.
+2. For each event, it should contain title, start time, duration, convenor, current number of attendees and capacity.
+
+======================
+(Done)
+US3:
+As a user,
+I should be able to see details of a particular event,
+So that I could be better informed about the event.
+
+Estimate Story Pts: 2
+Priority: 2
+
+    ---------------------
+    US3a:
+    As a guest-user,
+    I should be able to see registration fee for event,
+    So that I can know how much is this event
+    --------------------------------------
+
+
+ACs:
+1. The system should display the event's title, start time, duration, convenor, current number of attendees, availabe seats, capacity, description and early bird time.
+2. For guest user, system should dispaly registracton fee, if register time is before early bird time, registracton fee should have a 50% discount
+3. For seminar, capacity should be the max number of session's capacity
+4. For session, every session should have their own capacity number and available seats
+5. The system should also display some buttons for the user to register/deregister the event if the event is open and is not full/they don't want to attend.
+
+=======================
+(Done)
+US4:
+As a user,
+I should be able to register for an event,
+So that I can attend.
+
+Estimate Story Pts: 1
+Priority: 3
+
+ACs:
+1. The system will display an error message if the event is full
+2. The system will display an error message if the user is the staff who create this event
+3. The system will display a confirmation once the user has been registered into this event
+4. For guest-user, I want to register a seminar that i am the speaker of on of the session, i don't need to pay registracton fee
+5. For seminar, if user do not choose at least one seesion of a seminar, an error message will display.
+6. For seminar, if the number of attendees for a particular session has reached the maximum capacity for the seeion, a user will not be able to register for the session
+7. If user can not register for any seesion, they won't be able to segister for seminar
+8. If event is full, user can not register
+9. When user registers for a event successfully, available seats will minues one
+
+=======================
+(Done)
+US5:
+As a user,
+I should be able to de-register from an event,
+So that I'm not enrolled in this event anymore.
+
+Estimate Story Pts: 1
+Priority: 5
+
+ACs:
+1. The system will display an error message if past the deadline
+2. The system will display a confirmation once the user has been de-registered
+3. If user deregister successfully, the number of available seats will plus one
+
+=======================
+(Done)
+(Dashboard)
+US6:
+As a user,
+I should be able to display all my events,
+
+    US6a:
+    As a user(student/staff),
+    I should be able to see all current and past events that I have registered for
+    So that I know which events I attended or will attend.
+
+    Estimate Story Pts: 3
+    Priority: 3
+
+    ACs:
+    1. The system will display all current and past events that I have registered for
+
+
+    -----------------------
+
+    US6b:
+    As a staff,
+    I should be able to see all current and past events that I posted,
+    So that I know which events I organised.
+
+    Estimate Story Pts: 2
+    Priority: 3
+
+    ACs:
+    1. The system will display all current and past events that I posted
+
+    -----------------------
+
+    US6c
+    As a staff,
+    I should be able to see all events that I have cancelled,
+    So that I know events that I tried to organise.
+
+    Estimate Stotry Pts: 1
+    Priority: 5
+
+    ACs:
+    1. The system will display all my cancelled events that I posted
+
+=======================
+
+US7:
+As a staff,
+I should be able to change status of my event,
+
+    US7a:
+    As a staff,
+    I should be able to cancel events that I posted before they happened,
+    So that It's not being shown to others anymore.
+
+    Estimate Story Pts: 1
+    Priority: 5
+    
+    ACs:
+    1. The system will display an error message if the event is already happened
+    2. The system will change the status of the event to 'cancel'
+
+    -----------------------
+    (Done)
+    US7b:
+    As a staff,
+    I should be able to close events that I posted after they happened,
+    So that It's not being shown to others anymore.
+
+    Estimate Story Pts: 1
+    Priority: 5
+    
+    ACs:
+    1. The system will display an error message if the event has not happened yet
+    2. The system will change the status of the event to 'close'
+
+=======================
+(Done)
+US8:
+As a staff,
+I should be able to post my event,
+So that it gets listed on the webpage.
+
+ACs:
+1. The system will store the details of the event
+2. The system will display a confirmation message
+3. The system will redirect to the event detail page
+
+Estimate Story Pts: 4
+Priority: 2
+
+    US8a:
+    As a presenter,
+    I should be able to post a course,
+    So that it gets listed. 
+
+    US8b:
+    As a convenor,
+    I should be able to post a seminar,
+    So that it gets listed. 
+
+===========================
+US9:
+As a guest-user,
+I should be able to register
+So that I can have my own account
+
+ACs:
+1: The system wii provide a link for register as a guset-user
+2: The systekm will display a guest-user register form that requests the user to provide name, email, password
+3: if user register successfully, a 'successful' authentication page is displayed to user
+4: if user register successfully, the authentication details of the guest user will be stored on the system
+
+============================= 
+

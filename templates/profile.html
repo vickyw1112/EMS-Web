@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>EMS - Profile</title>
+    <script src= "https://use.fontawesome.com/4de47c0ac5.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center heading">User Profile</h1>
+<div class="row">
+    <div class="col-sm-7">
+        <img src="https://store-old.linefriends.com/wp-content/uploads/2015/12/zero_search.png"/>
+    </div>
+    <div class="col-sm-7" style="margin: 30px 25px">
+        <h3 class="panel-title">
+            <i class="fa fa-star" style="font-size:32px"></i>
+            {{profile_user.name}}
+        </h3>
+        <ul style="list-style-type:circle">
+            <li>Email: <a href="mailto:{{profile_user.email}}">{{profile_user.email}}</a></li>
+            {% if profile_user.zid %}
+            <li>zID: {{profile_user.zid}}</li>
+            {% endif %}
+            {% if profile_user.desc %}
+            <li>{{profile_user.desc}}</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

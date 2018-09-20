@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>EMS - Post Seminar</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+    <script src="/static/js/vue.min.js" charset="utf-8"></script>
+    <style type="text/css" media="screen">
+        .autocomplete-suggestions { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
+        .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+        .autocomplete-no-suggestion { padding: 2px 5px;}
+        .autocomplete-selected { background: #F0F0F0; }
+        .autocomplete-suggestions strong { font-weight: bold; color: #000; }
+        .autocomplete-group { padding: 2px 5px; font-weight: bold; font-size: 16px; color: #000; display: block; border-bottom: 1px solid #000; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center heading">Post a new seminar</h1>
+
+{% if msg %}
+<div class="alert alert-{{msg.cls}}" role="alert">
+{{msg}}
+</div>
+{% endif %}
+
+<div id="app">
+<form id="postForm" action="{{url_for('postEvent', eventType='seminar')}}" method="POST">
+    <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" type="text" name="title" placeholder="Enter Event Title" /> <br />
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Start time</label>
+                <input class="form-control" type="datetime-local" name="timeStart" /> 
+            </div>
+            <div class="col-md-6">
+                <label>End time</label>
+                <input class="form-control" type="datetime-local" name="timeEnd" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Registration fee</label>
+        <input class="form-control" type="number" name="fee" placeholder="Enter Fee" />
+        <small class="form-text text-muted">This registration fee is only payable by guest users.</small>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Early bird time</label>
+                <input class="form-control" type="datetime-local" name="earlyBirdTime"  />
+                <small class="form-text text-muted">Registration before this time will have a 50% off for guest users.</small>
+
+            </div>
+            <div class="col-md-6">
+                <label>Last time to leave</label>
+                <input class="form-control" type="datetime-local" name="lastTimeToLeave" id="time" value="" /> 
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" style="height:125px" name="description" placeholder="Enter description..."></textarea> <br />
+    </div>
+
+    <div id="session-wrap">
+    </div>
+    
+    <input type="hidden" name="sessionCount" id="sessionCount" value=0>
+    <input class="btn btn-primary" type="button" value="Add new session" onclick="addSession()"> <br />
+    <input class="btn btn-primary" style="margin: 20px 0" type="submit" name="post" value="Post" />
+</form>
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/jquery.autocomplete.min.js" charset="utf-8"></script>
+<script src="/static/js/postSeminar.js"></script>
+
+<script charset="utf-8">
+{% if form %}
+    let form = {{form | safe}};
+    $(window).on('load', function () {
+        for(var i = 0; i < form.sessionCount; i++){
+            addSession();
+        }
+    });
+{% else %}
+    $(window).on('load', function () {
+        addSession();
+    });
+{% endif %}
+
+</script>
+
+{% include 'form_persist.js' %}
+{% endblock %}

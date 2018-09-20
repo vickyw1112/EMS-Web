@@ -1,0 +1,28 @@
+{% if canChangeStatus %}
+<div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Admin Area - Change Status
+      </div>
+      <form action="{{event.url}}" method="POST">
+        <input type="hidden" name="action" value="changeStatus" /> 
+        <div class="card-body">
+            <p>Current Status: {{event.status}}</p>
+            <div class="btn-group">
+                {% for s, cls in statusColorMap.items() %}
+                <button 
+                    type="submit" 
+                    name="status" 
+                    value="{{s}}" 
+                    class="btn btn-{{cls}}"
+                    {%if event.status == s.upper()%}disabled{%endif%}
+                >
+                {{s.capitalize()}}
+            </button>
+            {% endfor %}
+            </div>
+        </div>
+      </form>
+    </div>
+</div>
+{% endif %}

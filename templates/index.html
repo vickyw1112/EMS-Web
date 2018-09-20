@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>EMS - {{category}}</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center heading">Events</h1>
+<div class="filter-wrap">
+    <ul class="nav nav-pills">
+      <span class="nav-link">Filter: </span>
+      <li class="nav-item">
+        <a class="nav-link {%if request.path == '/' %}active{%endif%}" href="/">All Event</a>
+      </li>
+
+      {% for event in eventCategories %}
+      <li class="nav-item">
+          <a class="nav-link {%if request.path.split('/')[2] == event %}active{%endif%}" href="/category/{{event}}">{{event.capitalize()}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+</div>
+
+<div class="row" style="justify-content: space-around">
+    
+{% for event in events %}
+{% include 'event_card.html' %}
+{% endfor %}
+
+{% if not events %}
+<h3>No events under this category</h3>
+{% endif %}
+
+</div>    
+
+{% endblock %}

@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-8">
+    <ul class="event-details">
+        <li>Time: {{event.time}}</li>
+        <li>Duration: {{event.duration}}</li>
+        <li>Posted by: {{event.convenor}}</li>
+        <li>Status: {{event.status.capitalize()}} </li>
+        {% if user.isGuest and not event.isCurrUserPresenter %}
+            {% if event.currFee == event.fee %}
+            <li>Fee: {{Money(event.currFee)}}</li>
+            {% else %}
+            <li>
+                Fee: <span style="text-decoration: line-through">${{Money(event.fee)}}</span> ${{Money(event.currFee)}}
+            </li>
+            <li>Early bird sales end at: {{event.earlyBirdTime}}</li>
+            {% endif %}
+        {% endif %}
+
+        <li>{{event.sessionCount}} sessions</li>
+        <li>Last time to leave: {{event.lastTimeToLeave}}</li>
+
+        <li>
+        <p>
+            {{event.desc}}
+        </p>
+        </li>
+    </ul>
+    </div>
+{% include 'event_details_admin_area.html' %}
+</div>
+
+<form action="{{event.url}}" method="POST">
+        <table class="table table-striped session-table" style="table-layout: fixed">
+            <thead>
+                <tr>
+                    <td>Session</td>
+                    <td>Title</td>
+                    <td>Time</td>
+                    <td>Presenter</td>
+                    <td>Available Seats</td>
+                    <td style="text-align: center">Attend?</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for session in event.sessions %}
+            <tr>
+                <td>{{session.id + 1}}</td>
+                <td>{{session.title}}</td>
+                <td>{{session.time}}</td>
+                <td>
+                    <a href="{{url_for('profile', uid=session.presenter_uid)}}">{{session.presenter}}</a>
+                </td>
+                <td>{{session.availableSeats}}</td>
+                <td style="text-align: center">
+                    <input style="transform: scale(2)" 
+                        type="checkbox" name="sessionSel" 
+                        class="sessionSel" value="{{session.id}}" 
+                        {%if not canJoin%}disabled{%endif%}
+                        {%if event.eid in user.eventEids and session.id in user.seminarSessions[event.eid]%}checked{%endif%}
+                        />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6"> <p class="session-desc">{{session.desc}}</p></td>
+            </tr>
+            {% endfor %}
+            <tr style="background: none">
+                <td colspan="5">&nbsp;</td> 
+                <td style="text-align: center">
+                {% if canJoin %}
+                    <input type="hidden" name="action" value="join" /> 
+                    <button type="submit" class="btn btn-success">Join {{event.type}}</button>
+                {% endif %}
+                {% if canLeave %}
+                    <input type="hidden" name="action" value="leave" /> 
+                    <button type="submit" class="btn btn-danger">Leave {{event.type}}</button>
+                {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</form>

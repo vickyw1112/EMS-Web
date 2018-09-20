@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, inital-scale=1, minimum-scale=1, maximum-scal=1" />
+    	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+
+        {% if user and user.noNotification %}
+        {% include 'notification_modal.html' %}
+        {% endif %}
+
+        <script src="/static/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+        <script src="/static/js/popper.min.js" charset="utf-8"></script>
+        <script src="/static/js/bootstrap.min.js" charset="utf-8"></script>
+        {% block script %}{% endblock %}
+    </body>
+</html>

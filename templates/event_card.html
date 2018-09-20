@@ -1,0 +1,22 @@
+<div class="col-lg-4 col-md-6 col-sm-12 event-card">
+    <div class="card" style="width: 19rem;">
+      <img class="card-img-top" src="/static/img/event-default.jpg" alt="Card image cap">
+      <div class="card-body">
+
+        <p class="card-text">
+        <span class="badge badge-pill badge-{{eventColorMap[event.type]}}">{{event.type}}</span>
+        <span class="badge badge-pill badge-{{statusColorMap[event.status]}}">{{event.status}}</span>
+        </p>
+        <h5 class="card-title">
+            {{event.title}}         
+        </h5>
+        <p class="card-text">{{event.time}}</p>
+        <p class="card-text">Posted by: {{event.convenor}}</p>
+        <p class="card-text">Available seats: {{event.availableSeats}}</p>
+        {% if event.type == 'Seminar' %}
+        <p class="card-text">{{event.sessionCount}} sessions</p>
+        {% endif %}
+        <a href="{{url_for('eventDetails', eid=event.eid)}}" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+</div>

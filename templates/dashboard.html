@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>EMS - Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+<h1 class="text-center heading">Dashboard</h1>
+
+
+{% if not user.events %} 
+    <h3 class="subheading">You have not registered for any events</h3>
+{% else %}
+    <h3 class="subheading">Your Events</h3>
+{% endif %}
+
+<div class="row" style="justify-content: space-around">
+{% for event in user.events%}
+    {% include 'event_card.html' %}
+{% endfor %}
+</div>
+
+{% if user.isStaff %}
+<div class="card"> 
+  <h2 class="card-header">Admin Area</h2>
+  <div class="card-body">
+    <span class="card-text">Post a new event:  </span>
+    {% for event in eventCategories %}
+    <a class="btn btn-{{eventColorMap[event]}}" href="{{url_for('postEvent', eventType=event.lower())}}" target="_blank">{{event.capitalize()}}</a>
+    {% endfor %}
+
+    {% if not user.postedEvents %} 
+        <h3 class="subheading">You have not posted any events</h3>
+    {% else %}
+        <h3 class="subheading">Events you have posted</h3>
+        <div class="row" style="justify-content: space-around">
+        {% for event in user.postedEvents%}
+            {% include 'event_card.html' %}
+        {% endfor %}
+        </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

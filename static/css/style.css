@@ -1,0 +1,25 @@
+.event-card {
+    margin-bottom: 50px;
+}
+
+.filter-wrap {
+    margin: 20px 5px;
+}
+
+.heading {
+    margin-top: 30px;
+}
+
+#session-wrap {
+    margin-top: 50px;
+}
+
+.event-details {
+    padding: 0;
+    margin: 10px 10px;
+    list-style: none;
+}
+
+.subheading {
+    margin: 20px 0;
+}

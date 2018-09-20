@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>EMS - Register as a guest user</title>
+    <script src="/static/js/vue.min.js" charset="utf-8"></script>
+
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center heading">Register as a guest user</h1>
+
+{% if msg %}
+<div class="alert alert-{{msg.cls}}" role="alert">
+{{msg}}
+</div>
+{% endif %}
+
+<div id="app">
+
+<form id="signup_form" action="/signup" method="POST">
+    <div class="form-group">
+        <label for="name">Full Name</label>
+        <input class="form-control" type="text" name="name" placeholder="Enter Name" value="" id="name">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" name="email" placeholder="Enter Email" value="" id="email">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" placeholder="Enter Password" value="" id="password">
+        <input class="form-control" type="password" placeholder="Enter Password Again" value="" id="password-repeat">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="description" class="form-control" style="height: 125px"></textarea>
+    </div>
+    <button type="button" onclick="submitForm()" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script charset="utf-8">
+    function submitForm(){
+        if(document.getElementById('password').value !=
+            document.getElementById('password-repeat').value){
+            alert('Inconsistant password!');
+            return;
+        } else {
+            let form = document.getElementById('signup_form');
+            form.submit();
+        }
+    }
+</script>
+{% include 'form_persist.js' %}
+{% endblock %}
